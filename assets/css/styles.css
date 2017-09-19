@@ -1,0 +1,9 @@
+.jumbotron{
+	background-image: url("../images/train2.jpg");
+	background-size: 940px;
+	color: green;
+}
+
+.panel{
+	color: green;
+}
