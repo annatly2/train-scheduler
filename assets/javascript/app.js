@@ -21,7 +21,7 @@ $("#add-train-btn").on("click", function(event){
 //Grabs user input
 var trainName = $("#train-name-input").val().trim();
 var destination = $("#destination-input").val().trim();
-var trainTime = moment($("#train-time-input").val().trim(),"HH:mm").format("HH:mm");
+var trainTime = $("#train-time-input").val().trim();
 var frequency = $("#frequency-input").val().trim();
 
 //Sets input in new temporary object
@@ -46,8 +46,9 @@ $("#destination-input").val("");
 $("#train-time-input").val("");
 $("#frequency-input").val("");
 
+});
+
 database.ref().on("child_added", function(childSnapshot, prevChildKey){
-  console.log("hello!!!");
   console.log(childSnapshot.val());
   console.log(prevChildKey);
 
@@ -61,19 +62,22 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey){
   console.log(trainTime);
   console.log(frequency);
 
-  var currentTime = moment();
-  var nextArrive = moment.unix(trainTime).format("HH:mm");
-  var minsAway = moment.utc(moment().format("HH:mm")).diff(moment(trainTime, "HH:MM"));
-  console.log(minsAway);
+  // var timeDiff = moment().diff(moment.unix(trainTime), "minutes");
+  // var remainder = moment().diff(moment.unix(trainTime), "minutes")%frequency;
+  // var minsAway = frequency - remainder;
+  // var nextTrainArr = moment().add(minutes, "m").format("hh:mm A");
 
-  //$("#train-table >tbody").append("<tr><td")
+  var convertTrainTime = moment(trainTime, "hh:mm").subtract(1, "years");
+  var timeDiff = moment().diff(moment(convertTrainTime), "minutes");
+  var timeRemain = timeDiff%frequency;
+  var minsAway = frequency - timeRemain;
+  var nextTrain = moment().add(minsAway, "minutes");
+  var nextTrainConverted = moment(nextTrain).format("hh:mm");
 
 
-})
+  $("#train-table >tbody").append("<tr><td>" + trainName + "</td><td>" + destination + "</td><td>" + frequency + "</td><td>" + nextTrainConverted + "</td><td>" + minsAway + "</td></tr>")
+
 
 });
-
-
-
 
 });

@@ -1,9 +1,22 @@
 .jumbotron{
-	background-image: url("../images/train2.jpg");
-	background-size: 940px;
-	color: pink;
+	background-image: url("../images/rail.jpg");
+	background-size: 950px;
+	color: yellow;
 }
 
-.panel{
-	color: pink;
+
+.container{
+	padding: 20px;
+}
+
+.panel-primary>.panel-heading {
+    color: #fff;
+    background-color: green;
+}
+
+
+.btn-primary {
+    color: #fff;
+    background-color: green;
+    border-color: grey;
 }
