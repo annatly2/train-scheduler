@@ -46,6 +46,30 @@ $("#destination-input").val("");
 $("#train-time-input").val("");
 $("#frequency-input").val("");
 
+database.ref().on("child_added", function(childSnapshot, prevChildKey){
+  console.log("hello!!!");
+  console.log(childSnapshot.val());
+  console.log(prevChildKey);
+
+  var trainName = childSnapshot.val().name;
+  var destination = childSnapshot.val().dest;
+  var trainTime = childSnapshot.val().time;
+  var frequency = childSnapshot.val().freq;
+
+  console.log(trainName);
+  console.log(destination);
+  console.log(trainTime);
+  console.log(frequency);
+
+  var currentTime = moment();
+  var nextArrive = moment.unix(trainTime).format("HH:mm");
+  var minsAway = moment.utc(moment().format("HH:mm")).diff(moment(trainTime, "HH:MM"));
+  console.log(minsAway);
+
+  //$("#train-table >tbody").append("<tr><td")
+
+
+})
 
 });
 
