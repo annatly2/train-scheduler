@@ -1,6 +1,5 @@
 $(document).ready(function(){
 
-
   // Initialize Firebase
   var config = {
     apiKey: "AIzaSyDmjG0ZUQcZZpeJ8EthXI67ijcvYCzOYw8",
@@ -62,11 +61,6 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey){
   console.log(trainTime);
   console.log(frequency);
 
-  // var timeDiff = moment().diff(moment.unix(trainTime), "minutes");
-  // var remainder = moment().diff(moment.unix(trainTime), "minutes")%frequency;
-  // var minsAway = frequency - remainder;
-  // var nextTrainArr = moment().add(minutes, "m").format("hh:mm A");
-
   var convertTrainTime = moment(trainTime, "hh:mm").subtract(1, "years");
   var timeDiff = moment().diff(moment(convertTrainTime), "minutes");
   var timeRemain = timeDiff%frequency;
@@ -74,9 +68,7 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey){
   var nextTrain = moment().add(minsAway, "minutes");
   var nextTrainConverted = moment(nextTrain).format("hh:mm");
 
-
-  $("#train-table >tbody").append("<tr><td>" + trainName + "</td><td>" + destination + "</td><td>" + frequency + "</td><td>" + nextTrainConverted + "</td><td>" + minsAway + "</td></tr>")
-
+  $("#train-table >tbody").append("<tr><td>" + trainName + "</td><td>" + destination + "</td><td>" + frequency + "</td><td>" + nextTrainConverted + "</td><td>" + minsAway + "</td></tr>");
 
 });
 

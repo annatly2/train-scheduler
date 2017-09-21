@@ -1,7 +1,7 @@
 .jumbotron{
 	background-image: url("../images/rail.jpg");
 	background-size: 950px;
-	color: yellow;
+	color: #edd904;
 }
 
 
@@ -11,12 +11,12 @@
 
 .panel-primary>.panel-heading {
     color: #fff;
-    background-color: green;
+    background-color: #488e45;
 }
 
 
 .btn-primary {
     color: #fff;
-    background-color: green;
+    background-color: #488e45;
     border-color: grey;
 }
